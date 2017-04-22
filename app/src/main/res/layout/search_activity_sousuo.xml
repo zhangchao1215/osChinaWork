@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="2">
+
+
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:paddingRight="13dp"
+        android:paddingLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        >
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/Search_EditText"
+            android:drawableLeft="@drawable/search_icon"
+            android:hint="搜索博客、软件、资讯"
+            android:layout_weight="1"
+            android:background="@drawable/login_ed"
+            />
+        <TextView
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="#4db687"
+            android:textSize="18sp"
+            android:id="@+id/Srarch_TextView"
+            />
+        <Button
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索"
+        android:id="@+id/Srarch_TextViewQue"
+        />
+    </LinearLayout>
+
+</LinearLayout>
