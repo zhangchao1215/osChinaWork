@@ -22,6 +22,7 @@ import jiyun.com.oschinawork.App;
 import jiyun.com.oschinawork.R;
 import jiyun.com.oschinawork.base.BaseActivity;
 import jiyun.com.oschinawork.base.BaseFragment;
+import jiyun.com.oschinawork.modle.bean.db.SearchMyanger;
 
 import static android.R.attr.id;
 
@@ -41,7 +42,7 @@ public class Search_FromActivity extends BaseActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private String name;
-
+    private SearchMyanger manger;
     @Override
     protected int getLayoutId() {
         return R.layout.search_fromlayout;
@@ -49,7 +50,9 @@ public class Search_FromActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        manger = new SearchMyanger(getApplicationContext());
         fragmentManager = this.getSupportFragmentManager();
+        initTag();
         mShared = getSharedPreferences("data", MODE_PRIVATE);
         mEditor = mShared.edit();
     }
@@ -70,6 +73,7 @@ public class Search_FromActivity extends BaseActivity {
             Toast.makeText(this, "不能为空", Toast.LENGTH_SHORT).show();
         } else {
             mEditor.putString("Name", name);
+            manger.insert(name);
             mEditor.commit();
             transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.Search_FromLayout, new MainSearchFragment());
@@ -77,4 +81,14 @@ public class Search_FromActivity extends BaseActivity {
 
         }
     }
+
+    private void initTag(){
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.Search_FromLayout,new SearchListFragment());
+        transaction.commit();
+
+
+    }
+
+
 }

@@ -68,6 +68,12 @@ public class UrlUtils {
     public static final String SerachPeople=BASE_URL+"action/api/find_user";
 
 
+    /**
+     * 活动
+     */
+    public static final String HuoDong = BASE_URL+"action/api/event_list";
+
+
 
 
 }

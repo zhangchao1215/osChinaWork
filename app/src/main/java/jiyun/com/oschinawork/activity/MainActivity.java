@@ -1,9 +1,11 @@
 package jiyun.com.oschinawork.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Process;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -53,6 +55,10 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.Main_RadioGroup)
     RadioGroup MainRadioGroup;
     private FragmentManager fragmentManager;
+    private SharedPreferences mShared;
+    private String uid;
+    private SharedPreferences.Editor mEditor;
+
     //找组件布局
     @Override
     protected int getLayoutId() {
@@ -77,7 +83,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ZongHeBtn,R.id.AddBtn, R.id.DongTanBtn, R.id.FaXianBtn, R.id.MineBtn, R.id.Serch_Btn})
+    @OnClick({R.id.ZongHeBtn, R.id.AddBtn, R.id.DongTanBtn, R.id.FaXianBtn, R.id.MineBtn, R.id.Serch_Btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ZongHeBtn:
@@ -98,8 +104,22 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.AddBtn:
-                Intent intent1 = new Intent(this, TweetPupActivity.class);
-                startActivity(intent1);
+                //点击按钮登陆
+                /**
+                 * 1：如果没登陆过就跳转登陆
+                 * 2：登陆过就跳转发表动弹
+                 */
+                mShared = getSharedPreferences("data",MODE_PRIVATE);
+                uid =mShared.getString("sendMsg", "");
+                mEditor = mShared.edit();
+                if (uid.isEmpty()) {
+                    Intent intent2 = new Intent(this, LoginActivity.class);
+                    startActivity(intent2);
+                } else {
+
+                    Intent intent1 = new Intent(this, TweetPupActivity.class);
+                    startActivity(intent1);
+                }
                 break;
 
         }
@@ -129,9 +149,11 @@ public class MainActivity extends BaseActivity {
 
 
     }
-      public TextView getTiitle(){
-          return TitleText;
-      }
+
+    public TextView getTiitle() {
+        return TitleText;
+    }
+
     //执行完全退出
     @Override
     protected void onDestroy() {

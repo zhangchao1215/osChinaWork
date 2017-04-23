@@ -111,6 +111,7 @@ public class NewsModleImpl implements NewsModle {
 
     /**
      * 发表动弹
+     *
      * @param uid
      * @param msg
      * @param img
@@ -119,12 +120,12 @@ public class NewsModleImpl implements NewsModle {
      */
     @Override
     public void sendMsg(String uid, String msg, String img, String amr, MyCallBack callBack) {
-        Map<String,String> map = new HashMap<>();
-        map.put("uid",uid);
-        map.put("msg",msg);
-        map.put("img",img);
-        map.put("amr",amr);
-        HttpFactroy.create().Post(UrlUtils.sendTweet,map,callBack);
+        Map<String, String> map = new HashMap<>();
+        map.put("uid", uid);
+        map.put("msg", msg);
+        map.put("img", img);
+        map.put("amr", amr);
+        HttpFactroy.create().Post(UrlUtils.sendTweet, map, callBack);
     }
 
     /*
@@ -192,14 +193,30 @@ public class NewsModleImpl implements NewsModle {
     }
 
     /**
-//     * @param name搜索中的找人
-//     * @param callBack接口的回调
+     * //     * @param name搜索中的找人
+     * //     * @param callBack接口的回调
      */
     @Override
     public void SerachPeople(String name, MyCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("name", name);
         HttpFactroy.create().Get(UrlUtils.SerachPeople, map, callBack);
+    }
+
+    /**
+     * 活动
+     *
+     * @param uid
+     * @param callBack
+     */
+    @Override
+    public void HuoDong(String uid, MyCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("pageIndex", "0");
+        map.put("uid", uid);
+        map.put("pageSize", "10");
+        HttpFactroy.create().Post(UrlUtils.HuoDong, map, callBack);
+
     }
 
 

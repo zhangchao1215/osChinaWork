@@ -31,14 +31,15 @@ import static jiyun.com.oschinawork.R.id.MinImageView;
 public class TweetAdapter extends BaseAdapter<TweetNewBean.TweetBean> {
     private String SystemDate;
     public TweetAdapter(Context context, List<TweetNewBean.TweetBean> datas) {
-        super(context, R.layout.dongtan_item, datas);
+        super(context, R.layout.item_zuixindongtan, datas);
     }
 
     @Override
     public void convert(ViewHolder holder, TweetNewBean.TweetBean Bean) {
-        ImageView view = (ImageView) holder.itemView.findViewById(R.id.tweetImage);
-        holder.setText(R.id.tweetbody, Bean.getBody());
-        holder.setText(R.id.tweetTitle, Bean.getAuthor());
+        ImageView view = (ImageView) holder.itemView.findViewById(R.id.item_newsdongtan_author_head);
+//      你要找对类型  不要照片来个settext
+        holder.setText(R.id.item_newsdongtan_author_body, Bean.getBody());
+        holder.setText(R.id.item_newsdongtan_author_name, Bean.getAuthor());
 //        holder.setText(R.id.TweetTime, Bean.getPubDate());
 //        Glide.with(App.activity)
 //                .load(Bean.getPortrait())
@@ -62,17 +63,17 @@ public class TweetAdapter extends BaseAdapter<TweetNewBean.TweetBean> {
             long poortime = systemLong - newSTime;//发布的时间距离现在的时间相差多少毫秒
             long poor_s = poortime / 1000;  //现在就是相差多少秒
             if (poor_s < 60) {
-                holder.setText(R.id.TweetTime, poor_s + "秒前");
+                holder.setText(R.id.item_newsdongtan_author_date, poor_s + "秒前");
             } else if (poor_s < 3600) {
-                holder.setText(R.id.TweetTime, poor_s / 60 + "分钟前");
+                holder.setText(R.id.item_newsdongtan_author_date, poor_s / 60 + "分钟前");
             } else if (newSTime > todayLIngCheng) {
-                holder.setText(R.id.TweetTime, poor_s / 3600 + "小时前");
+                holder.setText(R.id.item_newsdongtan_author_date, poor_s / 3600 + "小时前");
             } else if (Integer.parseInt(getDate((D_Date - newsDate), "d")) == 1) {
-                holder.setText(R.id.TweetTime, "昨天");
+                holder.setText(R.id.item_newsdongtan_author_date, "昨天");
             } else if (Integer.parseInt(getDate((D_Date - newsDate), "d")) == 2) {
-                holder.setText(R.id.TweetTime, "前天");
+                holder.setText(R.id.item_newsdongtan_author_date, "前天");
             } else {
-                holder.setText(R.id.TweetTime, Integer.parseInt(getDate((D_Date - newsDate), "d")) + "天前");
+                holder.setText(R.id.item_newsdongtan_author_date, Integer.parseInt(getDate((D_Date - newsDate), "d")) + "天前");
             }
 
         }

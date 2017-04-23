@@ -60,4 +60,12 @@ public interface NewsModle {
 
     */
     void SerachPeople(String name,MyCallBack callBack);
+
+    /**
+     * 线下活动
+     */
+    void HuoDong(String uid,MyCallBack callBack);
+
+
+
 }

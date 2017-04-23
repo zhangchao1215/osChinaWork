@@ -17,6 +17,7 @@ import jiyun.com.oschinawork.R;
 import jiyun.com.oschinawork.activity.MainActivity;
 import jiyun.com.oschinawork.base.BaseFragment;
 import jiyun.com.oschinawork.config.ConfigFragment;
+import jiyun.com.oschinawork.fragment.huodong.HuoDongFragment;
 import jiyun.com.oschinawork.fragment.kaiyuansoftware.KYSoftware;
 
 /**
@@ -42,6 +43,10 @@ public class FaxianFragment extends BaseFragment {
     @BindView(R.id.KY_Intent)
     RelativeLayout KYIntent;
     Unbinder unbinder1;
+    @BindView(R.id.HuoDong_XianXia)
+    RelativeLayout HuoDongXianXia;
+    Unbinder unbinder2;
+    Unbinder unbinder3;
 
     @Override
     protected int layoutId() {
@@ -81,7 +86,7 @@ public class FaxianFragment extends BaseFragment {
     @Override
     protected void unTitleBar() {
         if (App.activity instanceof MainActivity) {
-                  //显示
+            //显示
             ((MainActivity) App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
             ((MainActivity) App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
 
@@ -96,9 +101,17 @@ public class FaxianFragment extends BaseFragment {
     }
 
 
-    @OnClick(R.id.KY_Intent)
-    public void onViewClicked() {
-        ConfigFragment.getInstance().init().start(KYSoftware.class).build();
+    @OnClick({R.id.KY_Intent, R.id.HuoDong_XianXia})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.KY_Intent:
+                ConfigFragment.getInstance().init().start(KYSoftware.class).build();
+
+                break;
+            case R.id.HuoDong_XianXia:
+                ConfigFragment.getInstance().init().start(HuoDongFragment.class).build();
+                break;
+        }
     }
 
 

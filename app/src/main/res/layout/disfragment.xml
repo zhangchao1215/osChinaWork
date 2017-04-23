@@ -201,9 +201,9 @@
         android:background="#e6e3e3"></LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/HuoDong_XianXia"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-
         android:background="#ffff">
 
         <ImageView

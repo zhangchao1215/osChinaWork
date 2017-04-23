@@ -76,93 +76,51 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void loadData() {
+    //登陆
+    private void getLogin() {
         String name = LoginEditName.getText().toString().trim();
         String pwd = LoginEditPwd.getText().toString().trim();
         if (name.isEmpty() && pwd.isEmpty()) {
             Toast.makeText(this, "请输入正确的信息", Toast.LENGTH_SHORT).show();
         } else {
-
             modle.getLogin(name, pwd, "keep_login", new MyCallBack() {
                 @Override
                 public void onSuccess(String response) {
                     XStream stream = new XStream();
                     stream.alias("oschina", LoginBean.class);
                     bean = (LoginBean) stream.fromXML(response);
-                    Log.d("LoginActivity", bean.getUser().getUid());
-                    Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
                     mShared = getSharedPreferences("data", MODE_PRIVATE);
                     mEditor = mShared.edit();
-                    mEditor.putString("sendMsg", bean.getUser().getUid());
-                    mEditor.commit();
-                    onBackPressed();
+                    //这是传uid的值
+                    if(bean.getResult().getErrorCode().equals("1")) {
+                        mEditor.putString("sendMsg", bean.getUser().getUid());
+                        mEditor.putString("userName", bean.getUser().getName());
+                        mEditor.putString("port", bean.getUser().getPortrait());
+                        mEditor.commit();
+                        Log.e("成功了呢", response);
+                        Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }else if(bean.getResult().getErrorCode().equals("0")){
+                        Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
 
                 @Override
                 public void onError(String error) {
-
+                    Log.e("失败的是", error);
                 }
             });
         }
+    }
+
+
+    @Override
+    protected void loadData() {
+
 
     }
 
-//   private void Post(String url, Map<String, String> params) {
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-//        FormBody.Builder builder = null;
-//        if (params != null & params.size() > 0) {
-//            builder = new FormBody.Builder();
-//            Set<String> keySet = params.keySet();
-//            for (String key : keySet) {
-//                builder.add(key, params.get(key));
-//            }
-//
-//        }
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .post(builder.build())
-//                .build();
-//        okHttpClient.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//
-//                String string = response.body().string();
-//                Log.d("LoginActivity", string);
-//                XStream stream = new XStream();
-//                stream.alias("oschina", LoginBean.class);
-//                bean = (LoginBean) stream.fromXML(string);
-//                Log.d("LoginActivity", bean.getUser().getUid());
-//                saveCookie(response);
-//
-//            }
-//        });
-//    }
-
-
-    /**
-     * 点击登陆做的操作，解析数据
-     */
-    public void getListener() {
-        name = LoginEditName.getText().toString().trim();
-        pwd = LoginEditPwd.getText().toString().trim();
-        if (name.isEmpty() && pwd.isEmpty()) {
-            Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
-        } else {
-//            String url = "http://www.oschina.net/action/api/login_validate";
-//            Map<String, String> params = new HashMap<>();
-//            params.put("username", name);
-//            params.put("pwd", pwd);
-//            params.put("keep_login", "1");
-//            Post(url, params);
-//            onBackPressed();
-        }
-    }
 
     //返回回退栈方法
     @Override
@@ -171,56 +129,7 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-//    /**
-//     * 在响应头中得到cookie
-//     * 得到cookie,遍历里面的信息
-//     *
-//     * @param response
-//     */
-//    public void saveCookie(Response response) {
-//        cookie = "";
-//        Headers headers = response.headers();
-//        Set<String> names = headers.names();
-//        for (String key : names) {
-//            String value = headers.get(key);
-//            if (key.contains("Set-Cookie")) {
-//                cookie += value + ";";
-//            }
-//            if (cookie.length() > 0) {
-//                cookie = cookie.substring(0, cookie.length() - 1);
 //
-//            }
-//        }
-//         mShared =getSharedPreferences("data",MODE_PRIVATE);
-//        mEditor = mShared.edit();
-//        mEditor.putString("cookie", cookie);
-//        mEditor.commit();
-//
-//    }
-//
-//
-//    /**
-//     * 保存数据
-//     *
-//     * @return
-//     */
-//    public String getCoodie() {
-//        String cookie="";
-//        mShared = getSharedPreferences("data",MODE_PRIVATE);
-//        cookie = mShared.getString("cookie", "");
-//        if(!cookie.isEmpty()){
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Toast.makeText(LoginActivity.this, "cookie得到了", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//        }
-//
-//
-//        return cookie;
-//    }
 
     /**
      * 点击事件
@@ -231,11 +140,9 @@ public class LoginActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.Login_But:
-                loadData();
-//                getListener();
+                getLogin();
                 break;
             case R.id.Register_Login:
-//                myUid();
                 getUser();
                 break;
         }

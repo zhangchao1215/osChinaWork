@@ -70,8 +70,14 @@ public class OkHttpUtils implements IHttp {
                     .build();
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
-                public void onFailure(Call call, IOException e) {
+                public void onFailure(Call call, final IOException e) {
 
+                    App.activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("OkHttpUtils", "e.getStackTrace():" + e.getStackTrace());
+                        }
+                    });
                 }
 
                 @Override
@@ -87,8 +93,6 @@ public class OkHttpUtils implements IHttp {
                     });
                 }
             });
-
-
         }
     }
         /**
