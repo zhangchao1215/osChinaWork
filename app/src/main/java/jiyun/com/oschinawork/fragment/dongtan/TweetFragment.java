@@ -63,7 +63,6 @@ public class TweetFragment extends BaseFragment {
         mList.add(new NewTongtan());
         mList.add(new RemenDongtan());
         mList.add(new MyDongTan());
-        Log.e("same", mList.size() + "");
 
         adapter = new DongTan_PagerAdapter(getFragmentManager(), mListName, mList);
         DongtanViewPager.setAdapter(adapter);
@@ -72,7 +71,7 @@ public class TweetFragment extends BaseFragment {
 
     @Override
     protected void onHiddn() {
-
+        unTitleBar();
     }
 
     @Override
@@ -83,15 +82,9 @@ public class TweetFragment extends BaseFragment {
     //隐藏布局
     @Override
     protected void unTitleBar() {
-      if(App.activity instanceof MainActivity){
-       if(((MainActivity)App.activity).getMainRadioGroup().getVisibility()==View.GONE){
-           ((MainActivity)App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
-       }else if(((MainActivity)App.activity).getMainTitleBar().getVisibility()==View.GONE){
-           ((MainActivity)App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
-       }
 
-      }
         if (App.activity instanceof MainActivity) {
+            ((MainActivity)App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
             ((MainActivity) App.activity).getTitleText().setText("动弹");
         }
     }

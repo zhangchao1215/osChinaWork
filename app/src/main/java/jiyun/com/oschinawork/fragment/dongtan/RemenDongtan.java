@@ -13,7 +13,9 @@ import com.thoughtworks.xstream.XStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import jiyun.com.oschinawork.App;
 import jiyun.com.oschinawork.R;
+import jiyun.com.oschinawork.activity.MainActivity;
 import jiyun.com.oschinawork.adapter.tweet.TweetAdapter;
 import jiyun.com.oschinawork.base.BaseFragment;
 import jiyun.com.oschinawork.http.NewsModle;
@@ -107,12 +109,10 @@ public class RemenDongtan extends BaseFragment {
 
     @Override
     protected void onHiddn() {
-
     }
 
     @Override
     protected void show() {
-
     }
 
     @Override

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <ImageView
         android:id="@+id/item_newsdongtan_author_head"
         android:layout_width="60dp"
@@ -113,5 +114,13 @@
 
     </RelativeLayout>
 
+    <EditText
+        android:id="@+id/Tweet_PinLun_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_ed"
+        android:drawableLeft="@drawable/ic_comment_30"
+        android:text="发表评论" />
 
 </RelativeLayout>

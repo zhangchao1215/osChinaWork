@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -15,6 +17,8 @@ import jiyun.com.oschinawork.base.BaseActivity;
 import jiyun.com.oschinawork.http.NewsModle;
 import jiyun.com.oschinawork.http.NewsModleImpl;
 import jiyun.com.oschinawork.http.callback.MyCallBack;
+import jiyun.com.oschinawork.modle.bean.LoginBean;
+import jiyun.com.oschinawork.modle.bean.db.MyManger;
 
 /**
  * Created by Administrator on 2017/4/21.
@@ -28,6 +32,8 @@ public class TweetPupActivity extends BaseActivity {
     private SharedPreferences mShared;
     private NewsModle modle;
     private String sendMsg;
+    private MyManger manger;
+    private String id;
 
     @Override
     protected int getLayoutId() {
@@ -39,6 +45,8 @@ public class TweetPupActivity extends BaseActivity {
         modle = new NewsModleImpl();
         mShared = getSharedPreferences("data", MODE_PRIVATE);
         sendMsg = mShared.getString("sendMsg", "");
+        manger = new MyManger(getApplicationContext());
+//        id = manger.QueryUid();
     }
 
     @Override
@@ -50,11 +58,13 @@ public class TweetPupActivity extends BaseActivity {
     protected void loadData() {
 
     }
-    private void sendMsg(){
+
+    private void sendMsg() {
         modle.sendMsg(sendMsg, TweetEditText.getText().toString(), "", "", new MyCallBack() {
             @Override
             public void onSuccess(String response) {
                 Log.d("TweetPupActivity+我的是", response);
+//                Toast.makeText(TweetPupActivity.this, response, Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
 
@@ -68,9 +78,15 @@ public class TweetPupActivity extends BaseActivity {
 
     @OnClick(R.id.Tweet_SendMsg)
     public void onViewClicked() {
-        sendMsg();
+        if(TweetEditText.getText().toString().isEmpty()){
+            Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
+        }else{
+            sendMsg();
+        }
+
     }
-//退出键
+
+    //退出键
     @Override
     public void onBackPressed() {
         super.onBackPressed();

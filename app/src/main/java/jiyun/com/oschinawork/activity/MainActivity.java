@@ -87,16 +87,18 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ZongHeBtn:
-//                getTitleText().setText("综合");
                 ConfigFragment.getInstance().init().start(NewsFragment.class).build();
                 break;
             case R.id.DongTanBtn:
+
                 ConfigFragment.getInstance().init().start(TweetFragment.class).build();
                 break;
             case R.id.FaXianBtn:
+
                 ConfigFragment.getInstance().init().start(FaxianFragment.class).build();
                 break;
             case R.id.MineBtn:
+
                 ConfigFragment.getInstance().init().start(Mine_Fragment.class).build();
                 break;
             case R.id.Serch_Btn:
@@ -120,6 +122,7 @@ public class MainActivity extends BaseActivity {
                     Intent intent1 = new Intent(this, TweetPupActivity.class);
                     startActivity(intent1);
                 }
+
                 break;
 
         }

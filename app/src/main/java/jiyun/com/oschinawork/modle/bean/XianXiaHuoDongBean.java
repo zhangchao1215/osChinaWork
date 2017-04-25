@@ -10,6 +10,7 @@ import java.util.List;
 public class XianXiaHuoDongBean {
 
     private String pagesize;
+    private NoticeBean notice;
     private List<EventBean> events;
 
     public String getPagesize() {
@@ -20,6 +21,14 @@ public class XianXiaHuoDongBean {
         this.pagesize = pagesize;
     }
 
+    public NoticeBean getNotice() {
+        return notice;
+    }
+
+    public void setNotice(NoticeBean notice) {
+        this.notice = notice;
+    }
+
     public List<EventBean> getEvents() {
         return events;
     }
@@ -28,19 +37,56 @@ public class XianXiaHuoDongBean {
         this.events = events;
     }
 
-//    @org.simpleframework.xml.Root(name = "event")
+    public static class NoticeBean {
+        private String atmeCount;
+        private String msgCount;
+        private String reviewCount;
+        private String newFansCount;
+        private String newLikeCount;
+
+        public String getAtmeCount() {
+            return atmeCount;
+        }
+
+        public void setAtmeCount(String atmeCount) {
+            this.atmeCount = atmeCount;
+        }
+
+        public String getMsgCount() {
+            return msgCount;
+        }
+
+        public void setMsgCount(String msgCount) {
+            this.msgCount = msgCount;
+        }
+
+        public String getReviewCount() {
+            return reviewCount;
+        }
+
+        public void setReviewCount(String reviewCount) {
+            this.reviewCount = reviewCount;
+        }
+
+        public String getNewFansCount() {
+            return newFansCount;
+        }
+
+        public void setNewFansCount(String newFansCount) {
+            this.newFansCount = newFansCount;
+        }
+
+        public String getNewLikeCount() {
+            return newLikeCount;
+        }
+
+        public void setNewLikeCount(String newLikeCount) {
+            this.newLikeCount = newLikeCount;
+        }
+    }
+
     public static class EventBean {
-    private String image;
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    private String id;
+        private String id;
         private String cover;
         private String title;
         private String url;
@@ -140,4 +186,5 @@ public class XianXiaHuoDongBean {
             this.applyStatus = applyStatus;
         }
     }
+
 }

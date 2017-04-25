@@ -37,7 +37,7 @@ public class ReDianFragment extends BaseFragment {
     private List<NewsListBean.NewsBean> mList;
     private NewsModle modle;
     private NewsConterAdapter adapter;
-    private int Index;
+    private int Index = 0;
 
     @Override
     protected int layoutId() {

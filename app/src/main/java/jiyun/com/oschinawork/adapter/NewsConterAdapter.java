@@ -24,8 +24,8 @@ public class NewsConterAdapter extends BaseAdapter<NewsListBean.NewsBean> {
 
     @Override
     public void convert(ViewHolder holder, final NewsListBean.NewsBean newsBean) {
-        holder.setText(R.id.news_PullRecycler_item1,newsBean.getTitle());
-        holder.setText(R.id.news_PullRecycler_item2,newsBean.getBody());
+        holder.setText(R.id.contentTitle,newsBean.getTitle());
+        holder.setText(R.id.contentBody,newsBean.getBody());
         holder.setOnclickListener(R.id.Recycler_Layout_item, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

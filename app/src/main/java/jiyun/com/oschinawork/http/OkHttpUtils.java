@@ -37,6 +37,7 @@ public class OkHttpUtils implements IHttp {
     private String cookie;
 
     private OkHttpUtils() {
+
     }
 
     public static OkHttpUtils okHttpUtils = new OkHttpUtils();
@@ -55,6 +56,8 @@ public class OkHttpUtils implements IHttp {
      */
     @Override
     public void Post(String url, Map<String, String> params, final MyCallBack callBask) {
+        mShared = App.activity.getSharedPreferences("data",MODE_PRIVATE);
+        mEditor = mShared.edit();
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         FormBody.Builder builder = new FormBody.Builder();
         if (params != null) {
@@ -66,7 +69,7 @@ public class OkHttpUtils implements IHttp {
             Request request = new Request.Builder()
                     .url(url)
                     .post(builder.build())
-                    .addHeader("Cookie", getCoodie())
+                    .addHeader("Cookie",mShared.getString("cookie", ""))
                     .build();
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
@@ -82,7 +85,6 @@ public class OkHttpUtils implements IHttp {
 
                 @Override
                 public void onResponse(final Call call, Response response) throws IOException {
-                    saveCookie(response);
                     final String string = response.body().string();
 
                     App.activity.runOnUiThread(new Runnable() {
@@ -95,18 +97,7 @@ public class OkHttpUtils implements IHttp {
             });
         }
     }
-        /**
-         * 保存数据
-         *
-         * @return
-         */
-    public String getCoodie() {
-        String cookie="";
-        mShared = App.activity.getSharedPreferences("data",MODE_PRIVATE);
-        cookie = mShared.getString("cookie", "");
-        return cookie;
 
-    }
 
     /**
      * 提交请求头信息

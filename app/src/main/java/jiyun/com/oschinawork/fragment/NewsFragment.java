@@ -92,7 +92,12 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     protected void unTitleBar() {
+        if (App.activity instanceof MainActivity) {
+            //显示
+            ((MainActivity) App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
+            ((MainActivity) App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
 
+        }
         if (App.activity instanceof MainActivity) {
             ((MainActivity) App.activity).getTitleText().setText("综合");
         }

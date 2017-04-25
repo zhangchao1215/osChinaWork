@@ -55,6 +55,7 @@ public class Search_FromActivity extends BaseActivity {
         initTag();
         mShared = getSharedPreferences("data", MODE_PRIVATE);
         mEditor = mShared.edit();
+        SearchFromEdit.setText(mShared.getString("Name",""));
     }
 
     @Override

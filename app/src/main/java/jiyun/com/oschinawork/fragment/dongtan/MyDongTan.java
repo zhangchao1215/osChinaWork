@@ -1,5 +1,7 @@
 package jiyun.com.oschinawork.fragment.dongtan;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +16,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jiyun.com.oschinawork.App;
 import jiyun.com.oschinawork.R;
+import jiyun.com.oschinawork.activity.MainActivity;
 import jiyun.com.oschinawork.adapter.tweet.TweetAdapter;
 import jiyun.com.oschinawork.base.BaseActivity;
 import jiyun.com.oschinawork.base.BaseFragment;
@@ -34,6 +38,7 @@ public class MyDongTan extends BaseFragment {
     private TweetAdapter adapter;
     private ArrayList<TweetNewBean.TweetBean> mList;
     private int Index = 0;
+    private SharedPreferences mShared;
     @Override
     protected int layoutId() {
         return R.layout.dongtan_activity;
@@ -45,11 +50,36 @@ public class MyDongTan extends BaseFragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         dongtanPullRecycler.setLayoutManager(linearLayoutManager);
-        dongtanPullRecycler.setLayoutManager(linearLayoutManager);
-    }
+        dongtanPullRecycler.setPullToRefreshListener(new PullToRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dongtanPullRecycler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dongtanPullRecycler.setRefreshComplete();
+                        mList.clear();
+                        loadData();
+                    }
+                }, 2000);
+            }
+
+            @Override
+            public void onLoadMore() {
+                dongtanPullRecycler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dongtanPullRecycler.setLoadMoreComplete();
+                        Index++;
+                        loadData();
+                    }
+                }, 2000);
+            }
+        });
+      }
 
     @Override
     protected void initData() {
+        mShared = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         modle = new NewsModleImpl();
         mList = new ArrayList<>();
         adapter = new TweetAdapter(getActivity().getApplication(), mList);
@@ -63,7 +93,7 @@ public class MyDongTan extends BaseFragment {
 
     @Override
     protected void loadData() {
-        modle.getNewTweet("1" ,String.valueOf(Index), "10", new MyCallBack() {
+        modle.getNewTweet(mShared.getString("sendMsg","") ,String.valueOf(Index), "8", new MyCallBack() {
             @Override
             public void onSuccess(String response) {
                 XStream stream = new XStream();
@@ -83,12 +113,10 @@ public class MyDongTan extends BaseFragment {
 
     @Override
     protected void onHiddn() {
-
     }
 
     @Override
     protected void show() {
-
     }
 
     @Override

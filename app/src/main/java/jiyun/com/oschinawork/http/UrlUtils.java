@@ -40,6 +40,17 @@ public class UrlUtils {
 
     public static final String sendTweet = BASE_URL+"action/api/tweet_pub";
 
+    /*
+   动弹点赞
+    */
+
+    public static final String DianZan = BASE_URL+"action/api/tweet_like";
+    /**
+     * 动弹评论
+     */
+    public static final String Pinglun = BASE_URL+"action/api/comment_pub";
+
+
 
     //登陆
 
@@ -61,6 +72,12 @@ public class UrlUtils {
     //二级分类列表
     public static final String KY_Second = BASE_URL+"action/api/softwaretag_list";
 
+    /**
+     * 开源软件详情
+     */
+    public static final String KY_Detail = BASE_URL+"action/api/software_detail";
+
+
    /*
    搜索中的找人
 
@@ -72,7 +89,10 @@ public class UrlUtils {
      * 活动
      */
     public static final String HuoDong = BASE_URL+"action/api/event_list";
-
+    /**
+     * 活动详情
+     */
+    public static final String HuoDongDetail = BASE_URL+"action/api/post_detail";
 
 
 

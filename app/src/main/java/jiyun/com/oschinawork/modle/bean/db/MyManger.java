@@ -10,6 +10,7 @@ import java.util.List;
 
 import jiyun.com.oschinawork.modle.bean.LoginBean;
 
+import static android.R.attr.id;
 import static android.R.attr.name;
 
 /**
@@ -37,7 +38,7 @@ public class MyManger {
     public boolean insert(String coodie, String name, String pwd) {
         boolean boo;
         ContentValues values = new ContentValues();
-        values.put("coodie", coodie);
+        values.put("uid", coodie);
         values.put("name", name);
         values.put("pwd", pwd);
 
@@ -61,11 +62,18 @@ public class MyManger {
             LoginBean bean = new LoginBean();
             bean.getUser().setName(cursor.getString(cursor.getColumnIndex("name")));
             bean.getUser().setFans(cursor.getString(cursor.getColumnIndex("pwd")));
-            bean.getUser().setUid(cursor.getString(cursor.getColumnIndex("id")));
+            bean.getUser().setUid(cursor.getString(cursor.getColumnIndex("uid")));
             mList.add(bean);
         }
 
-         return mList;
+        return mList;
+    }
+
+    public String QueryUid() {
+        String str = new String();
+        Cursor chao = mDB.query("chao", null, null, null, null, null, null);
+        boolean id = str.contains(chao.getString(chao.getColumnIndex("id")));
+        return str;
     }
 
 

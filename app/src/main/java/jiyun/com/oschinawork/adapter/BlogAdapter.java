@@ -27,8 +27,8 @@ public class BlogAdapter extends BaseAdapter<BlogListBean.BlogBean> {
 
     @Override
     public void convert(ViewHolder holder, final BlogListBean.BlogBean blogBean) {
-        holder.setText(R.id.news_PullRecycler_item1, blogBean.getTitle());
-        holder.setText(R.id.news_PullRecycler_item2, blogBean.getBody());
+        holder.setText(R.id.contentTitle, blogBean.getTitle());
+        holder.setText(R.id.contentBody, blogBean.getBody());
         holder.setOnclickListener(R.id.Recycler_Layout_item, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

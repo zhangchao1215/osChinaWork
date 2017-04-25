@@ -13,7 +13,9 @@ import com.thoughtworks.xstream.XStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import jiyun.com.oschinawork.App;
 import jiyun.com.oschinawork.R;
+import jiyun.com.oschinawork.activity.MainActivity;
 import jiyun.com.oschinawork.adapter.tweet.TweetAdapter;
 import jiyun.com.oschinawork.base.BaseFragment;
 import jiyun.com.oschinawork.http.NewsModle;
@@ -31,7 +33,7 @@ public class NewTongtan extends BaseFragment {
     private NewsModle modle;
     private TweetAdapter adapter;
     private ArrayList<TweetNewBean.TweetBean> mList;
-    private int Index =0;
+    private int Index = 0;
 
     @Override
     protected int layoutId() {
@@ -42,7 +44,7 @@ public class NewTongtan extends BaseFragment {
     protected void initView(View view) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         dongtanPullRecycler.setLayoutManager(linearLayoutManager);
         dongtanPullRecycler.setPullToRefreshListener(new PullToRefreshListener() {
             @Override
@@ -52,7 +54,7 @@ public class NewTongtan extends BaseFragment {
                     public void run() {
                         dongtanPullRecycler.setRefreshComplete();
                         mList.clear();
-                        initData();
+                        loadData();
                     }
                 }, 2000);
             }
@@ -87,7 +89,7 @@ public class NewTongtan extends BaseFragment {
 
     @Override
     protected void loadData() {
-        modle.getNewTweet("0" ,String.valueOf(Index), "10", new MyCallBack() {
+        modle.getNewTweet("0", String.valueOf(Index), "10", new MyCallBack() {
             @Override
             public void onSuccess(String response) {
                 XStream stream = new XStream();
@@ -96,6 +98,7 @@ public class NewTongtan extends BaseFragment {
                 TweetNewBean bean = (TweetNewBean) stream.fromXML(response);
                 mList.addAll(bean.getTweets());
                 adapter.notifyDataSetChanged();
+                Log.d("NewTongtan", response);
             }
 
             @Override
@@ -107,16 +110,21 @@ public class NewTongtan extends BaseFragment {
 
     @Override
     protected void onHiddn() {
-
+        unTitleBar();
     }
 
     @Override
     protected void show() {
-
+        unTitleBar();
     }
 
     @Override
     protected void unTitleBar() {
+        if (App.activity instanceof MainActivity) {
+            //显示
+            ((MainActivity) App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
+            ((MainActivity) App.activity).getTitleText().setText("动弹");
+        }
 
     }
 

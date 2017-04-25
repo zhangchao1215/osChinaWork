@@ -46,7 +46,7 @@ public class NewsconterFragment extends BaseFragment {
     private NewsConterAdapter adapter;
     private List<NewsListBean.NewsBean> mList;
     private NewsModle modle;
-    private int Index = 1;
+    private int Index = 0;
     private List<View> listView;
     private LunBotuAdapter MyAdapter;
     private int currentItem = 1000000;

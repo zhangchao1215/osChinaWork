@@ -13,9 +13,19 @@ import jiyun.com.oschinawork.activity.LoginActivity;
 
 public class TweetNewBean {
 
+
+    private String notice;
     private String tweetCount;
     private String pagesize;
     private List<TweetBean> tweets;
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
 
     public String getTweetCount() {
         return tweetCount;

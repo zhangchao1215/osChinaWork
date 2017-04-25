@@ -33,17 +33,22 @@ public abstract class BaseFragment extends Fragment {
         initData();
         loadData();
         initListener();
+        unTitleBar();
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        unTitleBar();
 //        loadData();
 
     }
 
+    /***
+     * 默认就是隐藏,
+     * 如果隐藏就是隐藏，否则就是显示
+     * @param hidden 隐藏
+     */
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);

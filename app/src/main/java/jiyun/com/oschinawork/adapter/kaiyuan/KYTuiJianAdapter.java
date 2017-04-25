@@ -12,7 +12,6 @@ import java.util.List;
 
 import jiyun.com.oschinawork.R;
 import jiyun.com.oschinawork.modle.bean.KY_TuiJianBean;
-import jiyun.com.oschinawork.modle.bean.RuanJianBean;
 
 public class KYTuiJianAdapter extends BaseAdapter<KY_TuiJianBean.SoftwareBean> {
     public KYTuiJianAdapter(Context context, List<KY_TuiJianBean.SoftwareBean> datas) {
@@ -20,7 +19,7 @@ public class KYTuiJianAdapter extends BaseAdapter<KY_TuiJianBean.SoftwareBean> {
     }
 
     @Override
-    public void convert(ViewHolder holder,KY_TuiJianBean.SoftwareBean bean) {
+    public void convert(ViewHolder holder, final KY_TuiJianBean.SoftwareBean bean) {
         holder.setText(R.id.kaiyuan_newItem1, bean.getName());
         holder.setText(R.id.kaiyuan_newItem2, bean.getDescription());
     }

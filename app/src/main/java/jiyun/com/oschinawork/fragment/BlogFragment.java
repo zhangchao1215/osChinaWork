@@ -29,7 +29,7 @@ public class BlogFragment extends BaseFragment {
     private BlogAdapter adapter;
     private NewsModle modle;
     private List<BlogListBean.BlogBean> mList;
-    private int Index;
+    private int Index = 0;
     @BindView(R.id.news_PullRecycler)
     PullToRefreshRecyclerView newsPullRecycler;
 

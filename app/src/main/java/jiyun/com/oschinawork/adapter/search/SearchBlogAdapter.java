@@ -22,7 +22,7 @@ public class SearchBlogAdapter extends BaseAdapter<SearchBean.ResultBean> {
 
     @Override
     public void convert(ViewHolder holder, SearchBean.ResultBean resultBean) {
-        holder.setText(R.id.news_PullRecycler_item2, resultBean.getTitle());
-        holder.setText(R.id.news_PullRecycler_item1, resultBean.getDescription());
+        holder.setText(R.id.contentTitle, resultBean.getTitle());
+        holder.setText(R.id.contentBody, resultBean.getDescription());
     }
 }

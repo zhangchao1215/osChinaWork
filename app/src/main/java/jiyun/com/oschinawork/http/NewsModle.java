@@ -37,6 +37,18 @@ public interface NewsModle {
 
     void sendMsg(String uid,String msg,String img,String amr,MyCallBack callBack);
 
+    /**
+     *点赞
+     *
+     */
+    void DianZan(String tweetid,String uid,String ownerOfTweet,MyCallBack callBack);
+
+    /**
+     * 动弹评论
+     *
+     */
+ void pinglun(String catalog,String id,String uid,String content,String isPostToMyZone,MyCallBack callBack);
+
     //登陆
 
     void getLogin(String username,String pwd,String login,MyCallBack callbask);
@@ -55,7 +67,16 @@ public interface NewsModle {
     void KY_Second(String searchTag,String pageIndex,String pageSize,MyCallBack callBack);
 
     void KaiYuanTJ(String searchTag,String pageIndex,String pageSize,MyCallBack callBack);
-   /*
+
+    /**
+     *
+     开源软件的详情
+     */
+    void KYDetail(String ident,MyCallBack callBack);
+
+
+
+    /*
    搜素中的找人
 
     */
@@ -64,8 +85,11 @@ public interface NewsModle {
     /**
      * 线下活动
      */
-    void HuoDong(String uid,MyCallBack callBack);
+    void HuoDong(String uid,String pageIndex,MyCallBack callBack);
+    /**
+     * 线下活动详情
+     */
 
-
+    void HuoDongDetail(String id,MyCallBack callBack);
 
 }

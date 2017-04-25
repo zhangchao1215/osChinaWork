@@ -102,7 +102,9 @@ public class Mine_Fragment extends BaseFragment {
         if (App.activity instanceof MainActivity) {
             ((MainActivity) App.activity).getMainTitleBar().setVisibility(View.GONE);
         }
+
     }
+
 
     @Override
     public void setParams(Bundle bundle) {

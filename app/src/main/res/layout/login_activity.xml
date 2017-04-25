@@ -3,35 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <!--<EditText-->
-    <!--android:id="@+id/LoginEditName"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:hint="手机号，邮箱" />-->
-
-    <!--<EditText-->
-    <!--android:id="@+id/LoginEditPwd"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:hint="密码" />-->
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="80dp">-->
-    <!---->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="忘记密码"-->
-    <!--/>-->
-    <!--</LinearLayout>-->
-    <!--<Button-->
-    <!--android:id="@+id/Login_But"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center_horizontal"-->
-    <!--android:text="登陆" />-->
-
     <EditText
         android:layout_marginTop="50dp"
         android:id="@+id/LoginEditName"

@@ -42,11 +42,8 @@ public class FaxianFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.KY_Intent)
     RelativeLayout KYIntent;
-    Unbinder unbinder1;
     @BindView(R.id.HuoDong_XianXia)
     RelativeLayout HuoDongXianXia;
-    Unbinder unbinder2;
-    Unbinder unbinder3;
 
     @Override
     protected int layoutId() {
