@@ -16,6 +16,7 @@ import butterknife.BindView;
 import jiyun.com.oschinawork.App;
 import jiyun.com.oschinawork.R;
 import jiyun.com.oschinawork.activity.MainActivity;
+import jiyun.com.oschinawork.activity.MyContentLinearLayoutManager;
 import jiyun.com.oschinawork.adapter.tweet.TweetAdapter;
 import jiyun.com.oschinawork.base.BaseFragment;
 import jiyun.com.oschinawork.http.NewsModle;
@@ -42,10 +43,8 @@ public class NewTongtan extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        dongtanPullRecycler.setLayoutManager(linearLayoutManager);
+        dongtanPullRecycler.setLayoutManager(new MyContentLinearLayoutManager(getContext()));
         dongtanPullRecycler.setPullToRefreshListener(new PullToRefreshListener() {
             @Override
             public void onRefresh() {
@@ -95,7 +94,10 @@ public class NewTongtan extends BaseFragment {
                 XStream stream = new XStream();
                 stream.alias("oschina", TweetNewBean.class);
                 stream.alias("tweet", TweetNewBean.TweetBean.class);
+                stream.alias("user", TweetNewBean.TweetBean.UserBean.class);
+
                 TweetNewBean bean = (TweetNewBean) stream.fromXML(response);
+
                 mList.addAll(bean.getTweets());
                 adapter.notifyDataSetChanged();
                 Log.d("NewTongtan", response);
@@ -123,6 +125,7 @@ public class NewTongtan extends BaseFragment {
         if (App.activity instanceof MainActivity) {
             //显示
             ((MainActivity) App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
+            ((MainActivity) App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
             ((MainActivity) App.activity).getTitleText().setText("动弹");
         }
 

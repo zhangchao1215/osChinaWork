@@ -134,7 +134,7 @@ public class NewsconterFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+      //轮播图
         MyAdapter = new LunBotuAdapter(listView);
         LunPoTuViewPager.setAdapter(MyAdapter);
         LunPoTuViewPager.setCurrentItem(currentItem++);

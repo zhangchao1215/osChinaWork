@@ -4,49 +4,52 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <ImageView
-        android:id="@+id/item_newsdongtan_author_head"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/item_newsdongtan_author_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/item_newsdongtan_author_head"
-        android:text="亚麻籽"
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/item_newsdongtan_author_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_newsdongtan_author_name"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@id/item_newsdongtan_author_head"
-        android:text="突然想起了毕业照的拍立得"
-        android:textColor="#000" />
-
-    <ImageView
-        android:id="@+id/item_newsdongtan_author_ImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_newsdongtan_author_body"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@id/item_newsdongtan_author_head"></ImageView>
+    <include
+        android:id="@+id/incloude"
+        layout="@layout/include_actionbar"></include>
 
     <RelativeLayout
+        android:id="@+id/head_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_newsdongtan_author_ImageView"
-        android:layout_marginTop="40dp"
-        android:layout_toRightOf="@id/item_newsdongtan_author_head">
+        android:layout_below="@id/incloude">
+
+        <ImageView
+
+            android:id="@+id/item_dongtanxiangqing_author_head"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/item_newsdongtan_author_date"
+            android:id="@+id/item_dongtanxiangqing_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/item_dongtanxiangqing_author_head"
+            android:text="亚麻籽"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/item_dongtanxiangqing_author_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_dongtanxiangqing_author_name"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/item_dongtanxiangqing_author_head"
+            android:text="突然想起了毕业照的拍立得"
+            android:textColor="#000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_dongtanxiangqing_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/head_"
+        android:layout_marginLeft="60dp">
+
+        <TextView
+            android:id="@+id/item_dongtanxiangqing_author_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -55,64 +58,70 @@
             android:textColor="#000" />
 
         <TextView
-            android:id="@+id/item_newsdongtan_author_phone"
+            android:id="@+id/item_dongtanxiangqing_author_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="18dp"
-            android:layout_toRightOf="@id/item_newsdongtan_author_date"
+            android:layout_toRightOf="@id/item_dongtanxiangqing_author_date"
             android:text="Android"
             android:textColor="#000" />
 
-        <TextView
-            android:id="@+id/item_newsdongtan_author_zhuanfa"
+        <ImageView
+            android:id="@+id/item_dongtanxiangqing_author_zhuanfa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="18dp"
-            android:drawableLeft="@drawable/ic_forward"
-            android:text="转发"
-            android:textColor="#000" />
-
-        <TextView
-            android:id="@+id/item_newsdongtan_author_pinlun"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="18dp"
-            android:layout_toLeftOf="@id/item_newsdongtan_author_zhuanfa"
-            android:drawableLeft="@drawable/ic_comment_30"
-            android:text="评论"
-            android:textColor="#000" />
-
-        <TextView
-            android:id="@+id/item_newsdongtan_author_zan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="18dp"
-            android:layout_toLeftOf="@id/item_newsdongtan_author_pinlun"
-            android:drawablePadding="3dp"
-            android:text="赞"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_forward"
             android:textColor="#000" />
 
         <ImageView
-            android:id="@+id/item_newsdongtan_author_zanImage"
+            android:id="@+id/item_dongtanxiangqing_author_pinlun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_toLeftOf="@id/item_newsdongtan_author_zan"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/ic_thumb_normal" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/item_dongtanxiangqing_author_zhuanfa"
+            android:src="@drawable/ic_comment_30"
 
+            android:textColor="#000" />
+
+        <ImageView
+            android:id="@+id/item_dongtanxiangqing_author_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_toLeftOf="@id/item_dongtanxiangqing_author_pinlun"
+            android:drawablePadding="3dp"
+            android:src="@drawable/ic_thumb_normal"
+
+            android:textColor="#000" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/item_dongtanxiangqing_bottom"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/item_dongtanxiangqing_tab"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"></android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/item_dongtanxiangqing_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="340dp"></android.support.v4.view.ViewPager>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/Tweet_PinLun_edit"

@@ -1,6 +1,5 @@
 package jiyun.com.oschinawork.activity;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,50 +10,35 @@ import android.widget.Toast;
 
 import com.thoughtworks.xstream.XStream;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jiyun.com.oschinawork.App;
-import jiyun.com.oschinawork.BuildConfig;
 import jiyun.com.oschinawork.R;
 import jiyun.com.oschinawork.base.BaseActivity;
 import jiyun.com.oschinawork.http.ILoginModleImpl;
 import jiyun.com.oschinawork.http.LoginModle;
-import jiyun.com.oschinawork.http.NewsModle;
-import jiyun.com.oschinawork.http.NewsModleImpl;
 import jiyun.com.oschinawork.http.callback.MyCallBack;
 import jiyun.com.oschinawork.modle.bean.LoginBean;
 import jiyun.com.oschinawork.modle.bean.db.MyManger;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.Headers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
-import static android.R.id.edit;
-import static android.R.string.ok;
-import static android.os.Process.myUid;
+import static jiyun.com.oschinawork.R.id.LoginEditName;
+import static jiyun.com.oschinawork.R.id.LoginEditPwd;
 
 /**
  * Created by Administrator on 2017/4/16.
  */
 
 public class LoginActivity extends BaseActivity {
-    @BindView(R.id.Register_Login)
-    Button RegisterLogin;
-    @BindView(R.id.LoginEditName)
-    EditText LoginEditName;
-    @BindView(R.id.LoginEditPwd)
-    EditText LoginEditPwd;
-    @BindView(R.id.Login_But)
+
     Button LoginBut;
+    @BindView(R.id.login_zhanghao)
+    EditText loginZhanghao;
+    @BindView(R.id.login_mima)
+    EditText loginMima;
+    @BindView(R.id.login_denglu)
+    Button loginDenglu;
+    @BindView(R.id.login_zhuce)
+    Button loginZhuce;
     private SharedPreferences mShared;
     private SharedPreferences.Editor mEditor;
     private String name, pwd;
@@ -64,9 +48,10 @@ public class LoginActivity extends BaseActivity {
     private String name1;
     private String pwd1;
     private LoginModle modle;
+
     @Override
     protected int getLayoutId() {
-        return R.layout.login_activity;
+        return R.layout.mine_login;
     }
 
     @Override
@@ -89,36 +74,37 @@ public class LoginActivity extends BaseActivity {
 
 
     }
-private void Login(){
-    modle.Login(LoginEditName.getText().toString().trim(), LoginEditPwd.getText().toString().trim(), "1", new MyCallBack() {
-        @Override
-        public void onSuccess(String response) {
-            XStream stream = new XStream();
-            stream.alias("oschina", LoginBean.class);
-            bean = (LoginBean) stream.fromXML(response);
-            //这是传uid的值
-            if (bean.getResult().getErrorCode().equals("1")) {
-                mEditor.putString("sendMsg", bean.getUser().getUid());
-                mEditor.putString("userName", bean.getUser().getName());
-                mEditor.putString("port", bean.getUser().getPortrait());
+
+    private void Login() {
+        modle.Login(loginZhanghao.getText().toString().trim(), loginMima.getText().toString().trim(), "1", new MyCallBack() {
+            @Override
+            public void onSuccess(String response) {
+                XStream stream = new XStream();
+                stream.alias("oschina", LoginBean.class);
+                bean = (LoginBean) stream.fromXML(response);
+                //这是传uid的值
+                if (bean.getResult().getErrorCode().equals("1")) {
+                    mEditor.putString("sendMsg", bean.getUser().getUid());
+                    mEditor.putString("userName", bean.getUser().getName());
+                    mEditor.putString("port", bean.getUser().getPortrait());
 //                    manger.insert(bean.getUser().getUid(), name1, pwd1);
 //                    Log.d("LoginActivity", "manger.insert(bean.getUser().getUid(), name, pwd):" + manger.insert(bean.getUser().getUid(), name1, pwd1));
-                mEditor.commit();
+                    mEditor.commit();
 //                        Log.e("成功了呢", response);
-                Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-                onBackPressed();
-            } else if (bean.getResult().getErrorCode().equals("0")) {
-                Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else if (bean.getResult().getErrorCode().equals("0")) {
+                    Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
 
+                }
             }
-        }
 
-        @Override
-        public void onError(String error) {
-            Log.e("失败的是", error);
-        }
-    });
-}
+            @Override
+            public void onError(String error) {
+                Log.e("失败的是", error);
+            }
+        });
+    }
 
 
     //返回回退栈方法
@@ -128,22 +114,21 @@ private void Login(){
     }
 
 
-
     /**
      * 点击事件
      *
      * @param view
      */
-    @OnClick({R.id.Login_But, R.id.Register_Login})
+    @OnClick({R.id.login_denglu, R.id.login_zhuce})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.Login_But:
-                name1 = LoginEditName.getText().toString().trim();
-                pwd1 = LoginEditPwd.getText().toString().trim();
+            case R.id.login_denglu:
+                name1 = loginZhanghao.getText().toString().trim();
+                pwd1 = loginMima.getText().toString().trim();
                 if (name1.isEmpty() && pwd1.isEmpty()) {
                     Toast.makeText(this, "请输入正确的信息", Toast.LENGTH_SHORT).show();
                 } else {
-                   Login();
+                    Login();
                 }
                 break;
             case R.id.Register_Login:
@@ -151,6 +136,7 @@ private void Login(){
                 break;
         }
     }
+
 
 //    private void getUser() {
 //        modle.getUserName(bean.getUser().getUid(), new MyCallBack() {
@@ -166,14 +152,14 @@ private void Login(){
 //        });
 
 
-    }
+}
 
 
-    /**
-     * 得到用户信息
-     *
-     * 自己呀要有思想   老师的技术咱们学不来
-     */
+/**
+ * 得到用户信息
+ * <p>
+ * 自己呀要有思想   老师的技术咱们学不来
+ */
 //    private void myUid() {
 //        String url = "http://www.oschina.net/action/api/my_information?uid="+bean.getUser().getUid();
 //        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();

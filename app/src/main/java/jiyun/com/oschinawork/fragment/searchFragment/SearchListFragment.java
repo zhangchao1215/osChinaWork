@@ -63,6 +63,9 @@ public class SearchListFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        /**
+         * listview的点击事件，进行替换
+         */
     SearchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -174,6 +174,15 @@ public class NewsModleImpl implements NewsModle {
         HttpFactroy.create().Post(UrlUtils.DianZan, map, callBack);
 
     }
+    @Override
+    public void unLike(String tweetid, String uid, String ownerOfTweet, MyCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("tweetid", tweetid);
+        map.put("uid", uid);
+        map.put("ownerOfTweet", ownerOfTweet);
+        HttpFactroy.create().Post(UrlUtils.unLike, map, callBack);
+
+    }
 
     /**
      * 动弹评论
@@ -195,6 +204,22 @@ public class NewsModleImpl implements NewsModle {
         HttpFactroy.create().Post(UrlUtils.Pinglun,params,callBack);
 
     }
+
+    /**
+     * 获取评论
+     * @param id
+     * @param callBack
+     */
+    @Override
+    public void getPinlun(String catalog,String id, String pageIndex,String pagesize,MyCallBack callBack) {
+        Map<String,String> params = new HashMap<>();
+        params.put("catalog",catalog);
+        params.put("id",id);
+        params.put("pageIndex",pageIndex);
+        params.put("pageSize",pagesize);
+        HttpFactroy.create().Get(UrlUtils.getPinglun,params,callBack);
+
+}
 
     /*
     登陆
@@ -222,6 +247,38 @@ public class NewsModleImpl implements NewsModle {
         Map<String, String> map = new HashMap<>();
         map.put("uid", uid);
         HttpFactroy.create().Post(UrlUtils.getUserName, map, callBack);
+    }
+
+    /**
+     * 获取粉丝以及关注 1是关注
+     * @param uid
+     * @param callBack
+     */
+
+    @Override
+    public void getFensi(String uid, MyCallBack callBack) {
+        Map<String,String> params = new HashMap<>();
+        params.put("uid",uid);
+        params.put("relation","1");
+        params.put("pageIndex","0");
+        params.put("pageSize","10");
+        HttpFactroy.create().Get(UrlUtils.getFenSi,params,callBack);
+    }
+    /*
+
+    0是粉丝
+     */
+
+    @Override
+    public void getGuanZhu(String uid, MyCallBack callBack) {
+        Map<String,String> params = new HashMap<>();
+        params.put("uid",uid);
+        params.put("relation","0");
+        params.put("pageIndex","0");
+        params.put("pageSize","10");
+        HttpFactroy.create().Get(UrlUtils.getFenSi,params,callBack);
+
+
     }
  /*
     开源软件
@@ -295,7 +352,7 @@ public class NewsModleImpl implements NewsModle {
         Map<String, String> map = new HashMap<>();
         map.put("pageIndex", pageIndex);
         map.put("uid", uid);
-        map.put("pageSize", "11");
+        map.put("pageSize", "20");
         HttpFactroy.create().Post(UrlUtils.HuoDong, map, callBack);
 
     }

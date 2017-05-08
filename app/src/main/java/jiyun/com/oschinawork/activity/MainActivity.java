@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -111,8 +112,8 @@ public class MainActivity extends BaseActivity {
                  * 1：如果没登陆过就跳转登陆
                  * 2：登陆过就跳转发表动弹
                  */
-                mShared = getSharedPreferences("data",MODE_PRIVATE);
-                uid =mShared.getString("sendMsg", "");
+                mShared = getSharedPreferences("data", MODE_PRIVATE);
+                uid = mShared.getString("sendMsg", "");
                 mEditor = mShared.edit();
                 if (uid.isEmpty()) {
                     Intent intent2 = new Intent(this, LoginActivity.class);
@@ -190,4 +191,7 @@ public class MainActivity extends BaseActivity {
     public void setMainTitleBar(RelativeLayout mainTitleBar) {
         MainTitleBar = mainTitleBar;
     }
+
+
+
 }

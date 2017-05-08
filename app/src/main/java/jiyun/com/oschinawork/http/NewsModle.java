@@ -42,12 +42,24 @@ public interface NewsModle {
      *
      */
     void DianZan(String tweetid,String uid,String ownerOfTweet,MyCallBack callBack);
+    /**
+     * 取消点赞
+     */
+  void unLike(String tweetid,String uid,String ownerOfTweet,MyCallBack callBack);
+
 
     /**
      * 动弹评论
      *
      */
  void pinglun(String catalog,String id,String uid,String content,String isPostToMyZone,MyCallBack callBack);
+
+    /**
+     * 获取评论
+     */
+void getPinlun(String catalog,String id,String pageIndex,String pagesize,MyCallBack callBack);
+
+
 
     //登陆
 
@@ -56,6 +68,19 @@ public interface NewsModle {
  用户信息
  */
     void getUserName(String uid,MyCallBack callBack);
+
+    /**
+     * 获取我的粉丝
+
+     */
+   void getFensi(String uid,MyCallBack callBack);
+
+    /**
+     *
+     我的关注
+     */
+
+    void getGuanZhu(String uid,MyCallBack callBack);
 
 
     //开源软件

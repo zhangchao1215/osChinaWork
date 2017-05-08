@@ -1,6 +1,8 @@
 package jiyun.com.oschinawork.modle.bean;
 
 import android.content.Intent;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.WindowManager;
 
 import java.util.List;
@@ -14,10 +16,10 @@ import jiyun.com.oschinawork.activity.LoginActivity;
 public class TweetNewBean {
 
 
-    private String notice;
     private String tweetCount;
     private String pagesize;
     private List<TweetBean> tweets;
+    private String notice;
 
     public String getNotice() {
         return notice;
@@ -65,27 +67,7 @@ public class TweetNewBean {
         private String imgBig;
         private String likeCount;
         private String isLike;
-        private String likeList;
-
-        @Override
-        public String toString() {
-            return "TweetBean{" +
-                    "id='" + id + '\'' +
-                    ", portrait='" + portrait + '\'' +
-                    ", author='" + author + '\'' +
-                    ", authorid='" + authorid + '\'' +
-                    ", body='" + body + '\'' +
-                    ", attach='" + attach + '\'' +
-                    ", appclient='" + appclient + '\'' +
-                    ", commentCount='" + commentCount + '\'' +
-                    ", pubDate='" + pubDate + '\'' +
-                    ", imgSmall='" + imgSmall + '\'' +
-                    ", imgBig='" + imgBig + '\'' +
-                    ", likeCount='" + likeCount + '\'' +
-                    ", isLike='" + isLike + '\'' +
-                    ", likeList='" + likeList + '\'' +
-                    '}';
-        }
+        private List<UserBean> likeList;
 
         public String getId() {
             return id;
@@ -191,12 +173,75 @@ public class TweetNewBean {
             this.isLike = isLike;
         }
 
-        public String getLikeList() {
+        public List<UserBean> getLikeList() {
             return likeList;
         }
 
-        public void setLikeList(String likeList) {
+        public void setLikeList(List<UserBean> likeList) {
             this.likeList = likeList;
+        }
+
+        public static class UserBean implements Parcelable {
+            private String name;
+            private String uid;
+            private String portrait;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getUid() {
+                return uid;
+            }
+
+            public void setUid(String uid) {
+                this.uid = uid;
+            }
+
+            public String getPortrait() {
+                return portrait;
+            }
+
+            public void setPortrait(String portrait) {
+                this.portrait = portrait;
+            }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.name);
+                dest.writeString(this.uid);
+                dest.writeString(this.portrait);
+            }
+
+            public UserBean() {
+            }
+
+            protected UserBean(Parcel in) {
+                this.name = in.readString();
+                this.uid = in.readString();
+                this.portrait = in.readString();
+            }
+
+            public static final Parcelable.Creator<UserBean> CREATOR = new Parcelable.Creator<UserBean>() {
+                @Override
+                public UserBean createFromParcel(Parcel source) {
+                    return new UserBean(source);
+                }
+
+                @Override
+                public UserBean[] newArray(int size) {
+                    return new UserBean[size];
+                }
+            };
         }
     }
 

@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <ImageView
-    android:background="@mipmap/ab"
+    android:background="@mipmap/oschina_three"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     />

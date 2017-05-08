@@ -45,10 +45,30 @@ public class UrlUtils {
     */
 
     public static final String DianZan = BASE_URL+"action/api/tweet_like";
+
+    /**
+     * 取消点赞
+     */
+
+    public static final String unLike = BASE_URL+"action/api/tweet_unlike";
+
+    /*
+    获取赞
+     */
+
+    public static final String myLike = BASE_URL+"action/api/my_tweet_like_list";
+
+
     /**
      * 动弹评论
      */
     public static final String Pinglun = BASE_URL+"action/api/comment_pub";
+
+    /**
+     * 获取评论
+     */
+
+    public static final String getPinglun =BASE_URL+"action/api/comment_list";
 
 
 
@@ -60,6 +80,12 @@ public class UrlUtils {
      * 获取用户信息
      */
     public static final String getUserName = BASE_URL+"action/api/my_information";
+
+
+    /**
+     * 获取粉丝关注
+     */
+    public static final String getFenSi = BASE_URL+"action/api/friends_list";
 
 
     //开源软件

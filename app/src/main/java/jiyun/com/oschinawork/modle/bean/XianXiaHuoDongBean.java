@@ -8,10 +8,18 @@ import java.util.List;
 
 //@org.simpleframework.xml.Root(name = "oschina")
 public class XianXiaHuoDongBean {
-
+    private String result;
     private String pagesize;
     private NoticeBean notice;
     private List<EventBean> events;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String getPagesize() {
         return pagesize;

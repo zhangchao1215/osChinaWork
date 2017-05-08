@@ -27,6 +27,10 @@ import jiyun.com.oschinawork.http.NewsModleImpl;
 import jiyun.com.oschinawork.http.callback.MyCallBack;
 import jiyun.com.oschinawork.modle.bean.TweetNewBean;
 
+import static android.R.attr.fragment;
+import static android.R.attr.id;
+import static jiyun.com.oschinawork.R.id.Faxian_FramLayout;
+
 /**
  * Created by Administrator on 2017/4/21.
  */
@@ -39,6 +43,7 @@ public class MyDongTan extends BaseFragment {
     private ArrayList<TweetNewBean.TweetBean> mList;
     private int Index = 0;
     private SharedPreferences mShared;
+
     @Override
     protected int layoutId() {
         return R.layout.dongtan_activity;
@@ -48,36 +53,36 @@ public class MyDongTan extends BaseFragment {
     protected void initView(View view) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         dongtanPullRecycler.setLayoutManager(linearLayoutManager);
-        dongtanPullRecycler.setPullToRefreshListener(new PullToRefreshListener() {
-            @Override
-            public void onRefresh() {
-                dongtanPullRecycler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dongtanPullRecycler.setRefreshComplete();
-                        mList.clear();
-                        loadData();
-                    }
-                }, 2000);
-            }
+//        dongtanPullRecycler.setPullToRefreshListener(new PullToRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                dongtanPullRecycler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        dongtanPullRecycler.setRefreshComplete();
+//                        mList.clear();
+//                        loadData();
+//                    }
+//                }, 2000);
+//            }
+//
+//            @Override
+//            public void onLoadMore() {
+//                dongtanPullRecycler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        dongtanPullRecycler.setLoadMoreComplete();
+//                        Index++;
+//                        loadData();
+//                    }
+//                }, 2000);
+//            }
+//        });
+    }
 
-            @Override
-            public void onLoadMore() {
-                dongtanPullRecycler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dongtanPullRecycler.setLoadMoreComplete();
-                        Index++;
-                        loadData();
-                    }
-                }, 2000);
-            }
-        });
-      }
 
-    @Override
     protected void initData() {
         mShared = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         modle = new NewsModleImpl();
@@ -93,12 +98,13 @@ public class MyDongTan extends BaseFragment {
 
     @Override
     protected void loadData() {
-        modle.getNewTweet(mShared.getString("sendMsg","") ,String.valueOf(Index), "8", new MyCallBack() {
+        modle.getNewTweet(mShared.getString("sendMsg", ""), String.valueOf(Index), "8", new MyCallBack() {
             @Override
             public void onSuccess(String response) {
                 XStream stream = new XStream();
                 stream.alias("oschina", TweetNewBean.class);
                 stream.alias("tweet", TweetNewBean.TweetBean.class);
+                stream.alias("user", TweetNewBean.TweetBean.UserBean.class);
                 TweetNewBean bean = (TweetNewBean) stream.fromXML(response);
                 mList.addAll(bean.getTweets());
                 adapter.notifyDataSetChanged();
@@ -113,15 +119,19 @@ public class MyDongTan extends BaseFragment {
 
     @Override
     protected void onHiddn() {
+        unTitleBar();
     }
 
     @Override
     protected void show() {
+        unTitleBar();
     }
 
     @Override
     protected void unTitleBar() {
-
+        if (App.activity instanceof MainActivity) {
+            ((MainActivity) App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

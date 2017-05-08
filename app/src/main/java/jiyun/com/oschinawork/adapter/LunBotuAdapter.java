@@ -19,6 +19,7 @@ public class LunBotuAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
+        //在适配中定义一个int的最大值
         return Integer.MAX_VALUE;
     }
 

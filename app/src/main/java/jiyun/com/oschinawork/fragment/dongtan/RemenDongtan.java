@@ -16,6 +16,8 @@ import butterknife.BindView;
 import jiyun.com.oschinawork.App;
 import jiyun.com.oschinawork.R;
 import jiyun.com.oschinawork.activity.MainActivity;
+import jiyun.com.oschinawork.activity.MyContentLinearLayoutManager;
+import jiyun.com.oschinawork.activity.TweetDeatil;
 import jiyun.com.oschinawork.adapter.tweet.TweetAdapter;
 import jiyun.com.oschinawork.base.BaseFragment;
 import jiyun.com.oschinawork.http.NewsModle;
@@ -42,10 +44,8 @@ public class RemenDongtan extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dongtanPullRecycler.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
-        dongtanPullRecycler.setLayoutManager(linearLayoutManager);
+        dongtanPullRecycler.setLayoutManager(new MyContentLinearLayoutManager(getContext()));
         dongtanPullRecycler.setPullToRefreshListener(new PullToRefreshListener() {
             @Override
             public void onRefresh() {
@@ -95,6 +95,7 @@ public class RemenDongtan extends BaseFragment {
                 XStream stream = new XStream();
                 stream.alias("oschina", TweetNewBean.class);
                 stream.alias("tweet", TweetNewBean.TweetBean.class);
+                stream.alias("user", TweetNewBean.TweetBean.UserBean.class);
                 TweetNewBean bean = (TweetNewBean) stream.fromXML(response);
                 mList.addAll(bean.getTweets());
                 adapter.notifyDataSetChanged();
@@ -109,15 +110,17 @@ public class RemenDongtan extends BaseFragment {
 
     @Override
     protected void onHiddn() {
+        unTitleBar();
     }
 
     @Override
     protected void show() {
+        unTitleBar();
     }
 
     @Override
     protected void unTitleBar() {
-
+        ((MainActivity) App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
     }
 
     @Override

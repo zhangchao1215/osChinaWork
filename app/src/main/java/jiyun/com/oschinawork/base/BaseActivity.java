@@ -6,6 +6,8 @@ import android.os.Process;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import jiyun.com.oschinawork.App;
@@ -73,7 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 //    }
 
-
+//返回键退出
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -90,7 +92,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //加载数据
     protected abstract void loadData();
-
 
 
 

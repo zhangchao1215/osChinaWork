@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="#20CE5B"
+        android:layout_weight="2.8"
+        android:background="#37b735"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -17,7 +17,7 @@
             android:layout_height="60dp">
 
             <ImageView
-
+                 android:id="@+id/Mine_Shezhi"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="10dp"
@@ -46,8 +46,102 @@
             android:text="点击头像登录"
             android:textColor="#fff"
             android:textSize="16sp" />
-    </LinearLayout>
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/MineLinearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:background="#37b735"
+        >
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:orientation="vertical">
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="#ffffff"
+                android:text="36"/>
+            <TextView
+                 android:id="@+id/Mine_Tweet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="动弹"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:orientation="vertical">
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:text="0"/>
+            <TextView
+                android:id="@+id/Mine_ShouCang"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="收藏"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:orientation="vertical">
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="#ffffff"
+                android:text="5"/>
+            <TextView
+                android:id="@+id/Mine_Guanzhu"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="关注"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:orientation="vertical">
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:text="3"/>
+            <TextView
+                android:id="@+id/Mine_Fensi"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="粉丝"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

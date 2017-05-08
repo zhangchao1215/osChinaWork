@@ -85,6 +85,7 @@ public class TweetFragment extends BaseFragment {
 
         if (App.activity instanceof MainActivity) {
             ((MainActivity)App.activity).getMainTitleBar().setVisibility(View.VISIBLE);
+            ((MainActivity) App.activity).getMainRadioGroup().setVisibility(View.VISIBLE);
             ((MainActivity) App.activity).getTitleText().setText("动弹");
         }
     }

@@ -70,7 +70,7 @@ public class ConfigFragment {
                 e.printStackTrace();
             }
         }
-        //隐藏上一个Fragment
+        //隐藏上一个Fragment,记录最后一个Fragment
 
         if (App.lastFragment != null) {
             transaction.hide(App.lastFragment);
@@ -79,6 +79,7 @@ public class ConfigFragment {
 
         //显示Fragment
         transaction.show(fragment);
+        //把每个fragment添加到回退站中，记录了类名
         transaction.addToBackStack(simpleName);
         return this;
     }
