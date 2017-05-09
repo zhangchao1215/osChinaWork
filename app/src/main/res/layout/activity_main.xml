@@ -40,66 +40,69 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         ></FrameLayout>
-<RadioGroup
-    android:id="@+id/Main_RadioGroup"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:orientation="horizontal"
-    android:weightSum="5"
-    >
-    <RadioButton
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:button="@null"
-        android:text="综合"
-        android:gravity="center_horizontal"
-        android:drawableTop="@drawable/synthesize"
-        android:layout_marginTop="5dp"
-        android:id="@+id/ZongHeBtn"
 
-        />
-    <RadioButton
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:button="@null"
-        android:text="动弹"
-        android:gravity="center_horizontal"
-        android:drawableTop="@drawable/move"
-        android:layout_marginTop="5dp"
-        android:id="@+id/DongTanBtn"
-        />
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/ic_nav_add_normal"
-        android:id="@+id/AddBtn"
-        />
+    <RadioGroup
+        android:id="@+id/Main_RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
 
-    <RadioButton
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:button="@null"
-        android:text="发现"
-        android:gravity="center_horizontal"
-        android:drawableTop="@drawable/spealch"
-        android:layout_marginTop="5dp"
-        android:id="@+id/FaXianBtn"
-        />
-    <RadioButton
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:button="@null"
-        android:text="我的"
-        android:gravity="center_horizontal"
-        android:drawableTop="@drawable/mine"
-        android:layout_marginTop="5dp"
-        android:id="@+id/MineBtn"
-        />
-</RadioGroup>
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="综合"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/synthesize"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ZongHeBtn"
+
+            />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="动弹"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/move"
+            android:layout_marginTop="5dp"
+            android:id="@+id/DongTanBtn"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_nav_add_normal"
+            android:id="@+id/AddBtn"
+            />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="发现"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/spealch"
+            android:layout_marginTop="5dp"
+            android:id="@+id/FaXianBtn"
+            />
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="我的"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/mine"
+            android:layout_marginTop="5dp"
+            android:id="@+id/MineBtn"
+            />
+    </RadioGroup>
 
 </LinearLayout>

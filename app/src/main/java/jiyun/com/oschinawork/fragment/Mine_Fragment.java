@@ -83,6 +83,12 @@ public class Mine_Fragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getHead();
+    }
+
+    @Override
     protected void initData() {
 
     }

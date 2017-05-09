@@ -42,7 +42,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadData();
+//        loadData();
 
     }
 

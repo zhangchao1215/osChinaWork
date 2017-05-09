@@ -12,4 +12,5 @@ import jiyun.com.oschinawork.base.BaseFragment;
 public class App extends Application {
     public static BaseActivity  activity;
     public static BaseFragment  lastFragment;
+
 }
